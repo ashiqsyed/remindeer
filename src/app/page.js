@@ -1,10 +1,9 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import TestComponent from "./components/TestComponent"
+import LoginPage from "./components/LoginPage"
+import "./globals.css"
 export default function Home() {
   return (
-    <div>
-      
+    <div className="app-container">
+      <LoginPage />
     </div>
     
   );
