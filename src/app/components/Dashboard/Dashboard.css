@@ -1,0 +1,19 @@
+.dashboard-container {
+    padding: 20px;
+  }
+  
+  .addReminderBtn {
+    background-color: #0d99ff;
+    color: white;
+    padding: 15px 60px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 20px auto;
+  }
+  
+  .addReminderBtn:hover {
+    background-color: #0daaff;
+  }
