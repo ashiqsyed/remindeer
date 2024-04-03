@@ -1,5 +1,5 @@
 import React from 'react'
-//import Link from 'next/Link'  *for ze links
+import Link from 'next/link'  //ex: linking Demo to the demo page
 import "./Nav.css"
 // import remindeerLogo from "../../../public/Remindeer_SVG.svg"
 import logo from "../../app/Remindeer_PNG.png"
@@ -20,7 +20,7 @@ const Nav = () => {
 
             <div className="nav-right">
                 <ul>
-                    <li>Demo</li>
+                    <li><Link href='/demo'>Demo</Link></li>
                     <li>Signout</li>
 
                 </ul>
