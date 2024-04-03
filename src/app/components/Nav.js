@@ -7,7 +7,6 @@ import logo from "../../app/Remindeer_PNG.png"
 
 const Nav = () => {
 
-    console.log(logo.src);
     return (
         <div className="navBar">
 
@@ -21,7 +20,7 @@ const Nav = () => {
             <div className="nav-right">
                 <ul>
                     <li>Demo</li>
-                    <li>Signout</li>
+                    <li>Log in</li>
 
                 </ul>
             </div>        
