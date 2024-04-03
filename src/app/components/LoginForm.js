@@ -2,7 +2,6 @@ import "./LoginPage.css"
 
 const LoginForm = () => {
     return (
-        
         <div className="login-form">
             <input type="text" placeholder="Username"></input>
             <input type="password" placeholder="Password"></input>

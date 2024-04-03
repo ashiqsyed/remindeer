@@ -1,0 +1,17 @@
+
+.navBar {
+    background-color: blue;
+    font: 1em gray;
+    padding: 5px;
+
+}
+
+.nav-Left {
+    float: left;
+
+}
+
+.nav-Right {
+    float: right;   
+}
+

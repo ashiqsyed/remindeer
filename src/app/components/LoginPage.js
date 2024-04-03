@@ -1,4 +1,4 @@
-"use client"/* ask prof about this*/
+"use client"
 
 import "./LoginPage.css";
 import LoginForm from "./LoginForm";
