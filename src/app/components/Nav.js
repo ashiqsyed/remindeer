@@ -1,16 +1,20 @@
 import React from 'react'
 import "./Nav.css"
+// import remindeerLogo from "../../../public/Remindeer_SVG.svg"
+import logo from "../../../public/Remindeer_SVG.svg";
+
 
 const Nav = () => {
     return (
         <div className="navBar">
 
-            <div className="nev-left">
+            <div className="nav-left">
                 <ul>
-                    <li> <p><img src="../Remindeer_SVG.svg" alt="Logo of Remindeer"/></p></li>
-                    <li><h2>Remindeer</h2> </li>
+                    <li><img src={logo} alt="Logo of Remindeer" width="100px"/></li>
+                    <li>Remindeer</li>
                 </ul>
             </div>
+
             <div className="nav-right">
                 <ul>
                     <li>Demo</li>
