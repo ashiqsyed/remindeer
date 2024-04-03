@@ -7,7 +7,7 @@ const Nav = () => {
 
             <div className="nev-left">
                 <ul>
-                    <li> <p><img src="Remindeer_SVG.svg" alt="Logo of Remindeer"/></p></li>
+                    <li> <p><img src="../Remindeer_SVG.svg" alt="Logo of Remindeer"/></p></li>
                     <li><h2>Remindeer</h2> </li>
                 </ul>
             </div>
