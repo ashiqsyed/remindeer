@@ -1,0 +1,29 @@
+.outer {
+    margin: auto;
+    width: 50%;
+}
+
+.add {
+    position: absolute;
+    top: 100px;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+    text-align: left;
+}
+
+.submit {
+    margin-top: 10px;
+    display: block;
+}
