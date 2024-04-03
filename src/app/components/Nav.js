@@ -7,7 +7,6 @@ import logo from "../../app/Remindeer_PNG.png"
 
 const Nav = () => {
 
-    console.log(logo.src);
     return (
         <div className="navBar">
 

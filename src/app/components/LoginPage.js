@@ -8,6 +8,13 @@ import { useState } from 'react'
 
 const LoginPage = () => {
     const [mustSignUp, setMustSignUp] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    function handleLoginClick() {
+        // e.preventDefault();
+        setIsLoggedIn(true);
+        console.log(`you are logged in: ${isLoggedIn}`)
+    }
     function handleClick() {
         if (mustSignUp) {
             setMustSignUp(false)
@@ -31,7 +38,7 @@ const LoginPage = () => {
                 </div>
                 :
                 <div className="login-form-container">
-                    <LoginForm />
+                    <LoginForm onLoginClick={handleLoginClick} />
                     <div className="alt-option-container">
                         <p>Don't have an account?</p> <button onClick={handleClick}> Create one!</button> 
                     </div>

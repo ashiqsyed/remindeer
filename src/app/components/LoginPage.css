@@ -46,7 +46,7 @@ input[type="text"], input[type="password"], input[type="email"] {
     font-size: 32px;
 }
 
-input[type="submit"] {
+.login-button, .signup-button {
     height: 50px;
     width: 300px;
     font-size: 32px;

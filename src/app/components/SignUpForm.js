@@ -1,6 +1,11 @@
 import "./LoginPage.css"
+import {useRouter} from "next/navigation";
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+    const router = useRouter();
+    function handleSignup() {
+        router.push("/reminders")
+    }
     return (
         <div className="signup-form">
             <input type="text" placeholder="Username"></input>
@@ -8,7 +13,7 @@ const SignUpForm = () => {
             <input type="email" placeholder="thisismyemail@gmail.com"></input>
 
             <div className="button-container">
-                <input type="submit" value="Sign Up"></input>
+                <button className="signup-button" onClick={handleSignup}>Sign Up</button>
 
             </div>
             

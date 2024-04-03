@@ -10,10 +10,11 @@
     margin: auto;
     padding: 20px;
     width: 50%;
+    height: 40%;
     border-radius: 10px;
 }
 
-h2 {
+h1 {
     text-align: center;
 }
 
@@ -26,4 +27,27 @@ label {
 .submit {
     margin-top: 10px;
     display: block;
+}
+
+.upperForm {
+    display: flex;
+    /* border: 1px solid black; */
+    justify-content: space-between;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    height: 90%;
+    justify-content: space-between;
+}
+
+input[type="datetime-local"], input[type="text"] {
+    height: 50px;
+    /* border: 3px solid black; */
+}
+
+.exit-button {
+    padding: 20px;
 }
