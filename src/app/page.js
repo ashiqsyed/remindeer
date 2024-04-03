@@ -9,8 +9,8 @@ import "./globals.css"
 export default function Home() {
   return (
     <div className="app-container">
-      <LoginPage />
-       {/* <Dashboard /> */}
+      {/* <LoginPage /> */}
+       <Dashboard />
     </div>
     
   );

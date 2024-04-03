@@ -1,8 +1,9 @@
 "use client"
-
+// This is the /home or /root path since this is the unauthenticated view
 import "./LoginPage.css";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import Nav from "./Nav";
 import { useState } from 'react'
 
 const LoginPage = () => {
@@ -17,7 +18,8 @@ const LoginPage = () => {
 
     return (
         <div className="login-page">
-            <div className="navbar">Navbar</div>
+            {/* <div className="navbar">Navbar</div> */}
+            <Nav />
             <div className="form-container">
                 {
                 mustSignUp ?
