@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <div className="navBar">
             <div className="nav-Left">
-                    <img src="Remindeer_SVG.svg" alt="Logo of Remindeer"/>
+                    <img src="./../Remindeer_PNG.png" alt="Logo of Remindeer"/>
                     <h2>Remindeer</h2>
             </div>
             <div className="nav-Right">
