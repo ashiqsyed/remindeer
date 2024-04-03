@@ -1,48 +1,18 @@
 
 .navBar {
-    background-color: #00bbff;
-    font: 1em black;
+    background-color: blue;
+    font: 1em gray;
     padding: 5px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    height: 75px;
 
 }
 
-/* .nav-Left {
+.nav-Left {
     float: left;
 
 }
 
 .nav-Right {
     float: right;   
-} */
-
-.nav-left, .nav-right {
-    width: 30%;
-    border: 3px solid black;
-    display: flex;
-    display: flex;
-    justify-content: center;
-
 }
 
-ul {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    list-style-type: none;
-    width: 75%;
-    border: 3px solid orange;
-    font-size: 2em;
-}
-
-li {
-    border: 1px solid black;
-}
-
-img {
-    border: 1px solid black;
-}
 

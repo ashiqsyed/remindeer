@@ -1,4 +1,5 @@
 import React from 'react'
+//import Link from 'next/Link'  *for ze links
 import "./Nav.css"
 // import remindeerLogo from "../../../public/Remindeer_SVG.svg"
 import logo from "../../../public/Remindeer_SVG.svg";
