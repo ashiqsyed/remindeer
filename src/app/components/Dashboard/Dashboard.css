@@ -1,6 +1,16 @@
 .dashboard-container {
     padding: 20px;
+    background-color: lightgray;
+    opacity: 1;
+    min-height: 800px;
   }
+
+.dashboard-container-clicked {
+  padding: 20px;
+  background-color: lightgray;
+  opacity: 0.5;
+  min-height: 800px;
+}
   
   .addReminderBtn {
     background-color: #0d99ff;
@@ -16,4 +26,8 @@
   
   .addReminderBtn:hover {
     background-color: #0daaff;
+  }
+
+  .outer-container {
+    background-color: black;
   }
