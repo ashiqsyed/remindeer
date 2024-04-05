@@ -1,9 +1,7 @@
 import React from 'react'
 import Link from 'next/link'  //ex: linking Demo to the demo page
 import "./Nav.css"
-// import remindeerLogo from "../../../public/Remindeer_SVG.svg"
-import logo from "../../app/Remindeer_PNG.png"
-///Users/ashiqsyed/School/csci-4300/cs4300-project/remindeer/src/app/Remindeer_PNG.png
+import logo from "../../../../public/Remindeer_PNG.png"
 
 const Nav = () => {
 
@@ -20,7 +18,7 @@ const Nav = () => {
             <div className="nav-right">
                 <ul>
                     <li><Link href='/demo'>Demo</Link></li>
-                    <li>Signout</li>
+                    <li><Link href="/">Log In</Link></li>
 
                 </ul>
             </div>        

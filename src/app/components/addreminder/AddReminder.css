@@ -1,12 +1,13 @@
 .outer {
     margin: auto;
     width: 50%;
+    background-color: gray;
 }
 
 .add {
     position: absolute;
     top: 100px;
-    background-color: white;
+    /* background-color: white; */
     margin: auto;
     padding: 20px;
     width: 50%;

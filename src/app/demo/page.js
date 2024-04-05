@@ -1,12 +1,11 @@
-import LoginPage from "../components/LoginPage"
+import LoginPage from "../components/login-page/LoginPage"
 import Dashboard from "../components/Dashboard/Dashboard.js"
-import Nav from "../components/Nav"
-import AddReminder from "../components/Dashboard/AddReminder"
+import Nav from "../components/nav/Nav"
+import AddReminder from "../components/addreminder/AddReminder"
 
 export default function Home() {
     return (
         <div>
-            <Nav />
             <Dashboard />
         </div>
 

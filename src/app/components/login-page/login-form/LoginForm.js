@@ -1,12 +1,11 @@
-import "./LoginPage.css"
+import "../LoginPage.css"
 import {useRouter} from "next/navigation";
 
 const LoginForm = (props) => {
     const router = useRouter();
-    function handleLogin(e) {
-        // e.preventDefault()
+    function handleLogin() {
+        router.push("/reminders", {query: {loggedIn: "true"}});
         props.onLoginClick();
-        router.push("/reminders")
     }
     return (
         <div className="login-form">

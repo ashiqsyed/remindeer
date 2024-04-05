@@ -1,5 +1,5 @@
 import React from 'react';
-import Reminder from './Reminder';
+import Reminder from '../reminder/Reminder';
 
 const ReminderList = ({ reminders }) => {
   return (

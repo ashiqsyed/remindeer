@@ -1,4 +1,4 @@
-import "./LoginPage.css"
+import "../LoginPage.css"
 import {useRouter} from "next/navigation";
 
 const SignUpForm = (props) => {

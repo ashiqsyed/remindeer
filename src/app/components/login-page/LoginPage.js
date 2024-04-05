@@ -1,21 +1,16 @@
 "use client"
 // This is the /home or /root path since this is the unauthenticated view
 import "./LoginPage.css";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
-import Nav from "./Nav";
+import LoginForm from "./login-form/LoginForm";
+import SignUpForm from "./signup-form/SignUpForm";
+import Nav from "../nav/Nav";
 import { useState } from 'react'
 
-const LoginPage = () => {
+const LoginPage = (props) => {
     const [mustSignUp, setMustSignUp] = useState(true)
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    function handleLoginClick() {
-        // e.preventDefault();
-        setIsLoggedIn(true);
-        console.log(`you are logged in: ${isLoggedIn}`)
-    }
-    function handleClick() {
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    
+    function handleToggleButton() {
         if (mustSignUp) {
             setMustSignUp(false)
         } else {
@@ -25,7 +20,6 @@ const LoginPage = () => {
 
     return (
         <div className="login-page">
-            {/* <div className="navbar">Navbar</div> */}
             <Nav />
             <div className="form-container">
                 {
@@ -33,14 +27,14 @@ const LoginPage = () => {
                 <div className="signup-form-container">
                     <SignUpForm /> 
                     <div className="alt-option-container">
-                        <p>Already have an account?</p> <button onClick={handleClick}> Log In</button>
+                        <p>Already have an account?</p> <button onClick={handleToggleButton}> Log In</button>
                     </div>
                 </div>
                 :
                 <div className="login-form-container">
-                    <LoginForm onLoginClick={handleLoginClick} />
+                    <LoginForm onLoginClick={props.handleLogin} />
                     <div className="alt-option-container">
-                        <p>Don't have an account?</p> <button onClick={handleClick}> Create one!</button> 
+                        <p>Don't have an account?</p> <button onClick={handleToggleButton}> Create one!</button> 
                     </div>
                     
                 </div>

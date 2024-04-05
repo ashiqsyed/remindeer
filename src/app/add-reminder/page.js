@@ -1,4 +1,4 @@
-import AddReminder from "../components/Dashboard/AddReminder.js";
+import AddReminder from "../components/addreminder/AddReminder.js";
 export default function AddingReminder() {
     return <AddReminder />
 }

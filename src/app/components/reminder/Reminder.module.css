@@ -1,0 +1,23 @@
+.reminderItem {
+    background: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reminderImg {
+    /* border: 1px solid black; */
+    width: 100px;
+}
+
+.reminderInfo {
+    /* border: 1px solid black; */
+    width: 100%;
+    padding: 10px;
+    height: 45px;
+}
