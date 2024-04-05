@@ -15,7 +15,6 @@ export default function Home() {
   return (
     <div className="app-container">
       <LoginPage handleLogin={handleLogin}/>
-      {/* <AddReminder /> */}
     </div>
     
   );

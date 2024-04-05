@@ -23,7 +23,7 @@ const Dashboard = () => {
     } else {
       setIsAdding(true);
     }
-
+    console.log(isAdding);
     router.push("/add-reminder")
 
   }
@@ -32,9 +32,9 @@ const Dashboard = () => {
   }
 
   const reminders = [
-    { id: 1, title: 'Walk dogs', time: '09:14', description: 'walk the dogs', image: testImg3.src },
-    {id: 2, title: "Homework", time: "10:20", description: "do homework", image: testImg2.src},
-    {id: 3, title: "Go to the grocery store", time: "11:00", description: "Eggs, Milk, Bread", image: testImg1.src}
+    { id: 1, title: 'Walk dogs', date: '09:14', description: 'walk the dogs', image: testImg3.src },
+    {id: 2, title: "Homework", date: "10:20", description: "do homework", image: testImg2.src},
+    {id: 3, title: "Go to the grocery store", date: "11:00", description: "Eggs, Milk, Bread", image: testImg1.src}
     // Add more reminders as needed
   ];
 
