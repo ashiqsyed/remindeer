@@ -29,7 +29,7 @@ const LoginForm = (props) => {
 
         // router.push("/reminders", {query: {loggedIn: "true"}});
         // router.push("/reminders");
-        console.log(`user is logged in: ${props.loggedIn} (in loginform.js)`);
+        // console.log(`user is logged in: ${props.loggedIn} (in loginform.js)`);
 
     }
     return (
