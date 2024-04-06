@@ -37,13 +37,13 @@ const AddReminder = (props) => {
             image: imageUrl
         }
 
-        console.log(reminder);
+        router.push("/reminders")
+        // console.log(reminder);
         setTitle("");
         setDate("");
         setDescription("");
         setImageUrl("");
 
-        router.push("/reminders")
     }
     return (
       <div className="outer">

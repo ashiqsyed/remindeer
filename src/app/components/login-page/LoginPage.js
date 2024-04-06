@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 const LoginPage = (props) => {
     const [mustSignUp, setMustSignUp] = useState(true)
-    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    
     
     function handleToggleButton() {
         if (mustSignUp) {
@@ -32,7 +32,8 @@ const LoginPage = (props) => {
                 </div>
                 :
                 <div className="login-form-container">
-                    <LoginForm onLoginClick={props.handleLogin} />
+                    <LoginForm onLoginClick={props.handleLogin} loggedIn={props.loggedIn}/>
+
                     <div className="alt-option-container">
                         <p>Don't have an account?</p> <button onClick={handleToggleButton}> Create one!</button> 
                     </div>

@@ -1,20 +1,20 @@
 "use client"
 
 import LoginPage from "./components/login-page/LoginPage"
-import Dashboard from "./components/Dashboard/Dashboard.js"
-import Nav from "./components/nav/Nav"
-import AddReminder from "./components/addreminder/AddReminder"
 import {useState} from "react"
 import "./globals.css"
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  // setLoggedIn(true);
   const handleLogin = () => {
-    setIsLoggedIn(true);
-    console.log(isLoggedIn);
+    // setLoggedIn(prevLogin => !prevLogin);
+    setLoggedIn(true);
+
+    console.log(`in page.js - loggedIn: ${loggedIn}`)
   }
   return (
     <div className="app-container">
-      <LoginPage handleLogin={handleLogin}/>
+      <LoginPage handleLogin={handleLogin} loggedIn={loggedIn}/>
     </div>
     
   );
