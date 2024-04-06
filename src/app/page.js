@@ -7,7 +7,7 @@ import "./globals.css"
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  let loggedIn = false;
+  // let loggedIn = false;
   function handleLogin() {
     setIsLoggedIn(true);
     // loggedIn = true;
