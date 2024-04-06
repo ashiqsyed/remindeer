@@ -20,7 +20,7 @@ const LoginPage = (props) => {
 
     return (
         <div className="login-page">
-            <Nav />
+            <Nav loggedIn={props.loggedIn}/>
             <div className="form-container">
                 {
                 mustSignUp ?

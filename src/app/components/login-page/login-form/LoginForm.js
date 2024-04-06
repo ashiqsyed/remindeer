@@ -15,19 +15,22 @@ const LoginForm = (props) => {
     }
     function handleLogin(event) {
         event.preventDefault();
+        props.onLoginClick();
         const existingUser = {
             username: username,
             password: password
         }
         
-        props.onLoginClick();
 
         setUsername("");
         setPassword("");
 
-        console.log(existingUser);
+        // console.log(existingUser);
 
         // router.push("/reminders", {query: {loggedIn: "true"}});
+        // router.push("/reminders");
+        console.log(`user is logged in: ${props.loggedIn} (in loginform.js)`);
+
     }
     return (
         <form className="login-form" onSubmit={handleLogin}>
