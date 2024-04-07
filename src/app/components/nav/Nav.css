@@ -17,7 +17,7 @@ ul {
     list-style-type: none;
     display: flex;
     /* border: 1px solid black; */
-    width: 100%;
+    /* width: 100%; */
     padding: 0;
     height: 100%;
     justify-content: space-around;
@@ -31,6 +31,16 @@ li {
     width: 35%;
     justify-content: center;
 
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    transition: .25s;
+}
+
+.nav-link:hover {
+    text-shadow: 2px 2px lightgray;
 }
 
 

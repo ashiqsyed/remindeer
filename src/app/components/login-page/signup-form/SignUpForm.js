@@ -19,12 +19,14 @@ const SignUpForm = (props) => {
 
     function handleSignup(event) {
         event.preventDefault();
+        props.onSignupClick()
         const newUser = {
             username: username,
             password: password,
             email: email
         }
-
+        // console.log("new user is: ");
+        // console.log(newUser);
 
         setUsername("");
         setPassword("");

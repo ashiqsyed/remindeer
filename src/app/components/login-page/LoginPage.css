@@ -9,7 +9,7 @@
 }
 .login-page {
     height: 100%;
-    /* border: 3px solid black; */
+
 }
 .login-form, .signup-form {
     height: 250px;
@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: space-around;
-    /* border: 1px sold black; */
+
 }
 
 .login-form-container, .signup-form-container {
@@ -44,12 +44,28 @@
 input[type="text"], input[type="password"], input[type="email"] {
     height: 50px;
     font-size: 32px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: black;
+    transition: 0.25s;
+    
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+    box-shadow: 5px 5px black;
 }
 
 .login-button, .signup-button {
     height: 50px;
     width: 300px;
     font-size: 32px;
+    border-radius: 20px;
+    transition: 0.25s;
+}
+
+.login-button:hover, .signup-button:hover {
+    box-shadow: 2px 2px black;
 }
 
 .button-container {
@@ -63,6 +79,20 @@ p {
 }
 
 .alt-option-container {
-    /* font-size: 16px; */
+    
     font-size: 20px;
+}
+
+.toggle-button {
+    height: 50px;
+    width: 100px;
+    padding: 10px;
+    padding-top: none;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.25s;
+}
+
+.toggle-button:hover {
+    box-shadow: 3px 3px black;
 }

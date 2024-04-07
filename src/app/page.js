@@ -6,19 +6,21 @@ import {useRouter} from "next/navigation";
 
 import "./globals.css"
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
-  // let loggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+ 
   function handleLogin() {
     setIsLoggedIn(true);
-    // loggedIn = true;
-    // console.log(`user is logged in: ${loggedIn} (in page.js)`)
   }
   
   useEffect(() => {
     if (isLoggedIn) {
       router.push("/reminders");
-      console.log(`in page.js, user is logged in ${isLoggedIn}`)
+
+      localStorage.setItem("loggedIn", isLoggedIn)
+      // console.log(`user is logged in: ${localStorage.getItem("loggedIn")}`)
+    } else {
+      // console.log(`user is logged in: ${Boolean(localStorage.getItem("loggedIn"))}`)
     }
   }, [isLoggedIn])
   return (

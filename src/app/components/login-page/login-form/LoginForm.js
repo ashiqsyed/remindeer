@@ -21,15 +21,11 @@ const LoginForm = (props) => {
             password: password
         }
         
+        // console.log("existing user: ");
+        // console.log(existingUser);
 
         setUsername("");
         setPassword("");
-
-        // console.log(existingUser);
-
-        // router.push("/reminders", {query: {loggedIn: "true"}});
-        // router.push("/reminders");
-        // console.log(`user is logged in: ${props.loggedIn} (in loginform.js)`);
 
     }
     return (

@@ -12,7 +12,7 @@ import testImg3 from "../../../../public/pexels-blue-bird-7210754.jpg";
 
 //this path should be /reminders since this is where reminders are displayed
 
-const Dashboard = ({searchParams}) => {
+const Dashboard = () => {
   const router = useRouter();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -25,7 +25,8 @@ const Dashboard = ({searchParams}) => {
     setIsClicked(true);
   }
 
-  const params = useSearchParams();
+  const loggedIn = localStorage.getItem("loggedIn");
+
 
   
 

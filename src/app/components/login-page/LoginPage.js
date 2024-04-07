@@ -20,27 +20,26 @@ const LoginPage = (props) => {
 
     return (
         <div className="login-page">
-            <Nav loggedIn={props.loggedIn}/>
+            <Nav />
             <div className="form-container">
                 {
                 mustSignUp ?
                 <div className="signup-form-container">
-                    <SignUpForm /> 
+                    <SignUpForm onSignupClick={props.handleLogin} /> 
                     <div className="alt-option-container">
-                        <p>Already have an account?</p> <button onClick={handleToggleButton}> Log In</button>
+                        <p>Already have an account?</p> <button className="toggle-button" onClick={handleToggleButton}> Log In</button>
                     </div>
                 </div>
                 :
                 <div className="login-form-container">
-                    <LoginForm onLoginClick={props.handleLogin} loggedIn={props.loggedIn}/>
+                    <LoginForm onLoginClick={props.handleLogin} />
 
                     <div className="alt-option-container">
-                        <p>Don't have an account?</p> <button onClick={handleToggleButton}> Create one!</button> 
+                        <p>Don't have an account?</p> <button className="toggle-button" onClick={handleToggleButton}> Create one!</button> 
                     </div>
                     
                 </div>
                 }
-
             </div>
             {/* Replace this with react router links?? */}
         </div>
