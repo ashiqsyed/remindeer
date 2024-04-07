@@ -20,4 +20,28 @@
     width: 100%;
     padding: 10px;
     height: 45px;
+    /* border: 1px solid black; */
+}
+
+.buttonContainer {
+    /* border: 1px solid black; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.editButton, .deleteButton {
+    border-radius: 10px;
+    transition: 0.25s;
+}
+
+.deleteButton:hover {
+    background-color: red;
+    color: white;
+}
+
+.editButton:hover {
+    background-color: #0d99ff;
+    color: white;
 }
