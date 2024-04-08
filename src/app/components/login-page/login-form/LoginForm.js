@@ -15,17 +15,21 @@ const LoginForm = (props) => {
     }
     function handleLogin(event) {
         event.preventDefault();
-        props.onLoginClick();
-        const existingUser = {
-            username: username,
-            password: password
+        if (username === '' || password === '') {
+            alert("Both username and password must be entered.")
+        } else {
+            props.onLoginClick();
+            const existingUser = {
+                username: username,
+                password: password
+            }
+            
+            // console.log("existing user: ");
+            // console.log(existingUser);
+    
+            setUsername("");
+            setPassword("");
         }
-        
-        // console.log("existing user: ");
-        // console.log(existingUser);
-
-        setUsername("");
-        setPassword("");
 
     }
     return (

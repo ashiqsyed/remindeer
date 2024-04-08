@@ -20,20 +20,25 @@ const AddReminder = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const reminder = {
-            title: title,
-            date: new Date(date),
-            description: description,
-            image: imageUrl
-        };
+        if (title === "" || date === "" || description === "" || imageUrl == "") {
+            alert("You must provide a title, date, description, and image url for a remidner.");
+        } else {
+            const reminder = {
+                title: title,
+                date: new Date(date),
+                description: description,
+                image: imageUrl
+            };
+    
+            // HERE is where we will probably send the reminder data to the backend
+    
+            router.push("/reminders");
+            setTitle("");
+            setDate("");
+            setDescription("");
+            setImageUrl("");
 
-        // HERE is where we will probably send the reminder data to the backend
-
-        router.push("/reminders");
-        setTitle("");
-        setDate("");
-        setDescription("");
-        setImageUrl("");
+        }
     };
 
     return (

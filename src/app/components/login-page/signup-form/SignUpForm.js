@@ -19,25 +19,30 @@ const SignUpForm = (props) => {
 
     function handleSignup(event) {
         event.preventDefault();
-        props.onSignupClick()
-        const newUser = {
-            username: username,
-            password: password,
-            email: email
+        if (username === '' || password === '' || email === '') {
+            alert("Username, password, and email all must be filled in.")
+        } else {
+            props.onSignupClick()
+            const newUser = {
+                username: username,
+                password: password,
+                email: email
+            }
+            // console.log("new user is: ");
+            // console.log(newUser);
+    
+            setUsername("");
+            setPassword("");
+            setEmail("");
+            // router.push({
+            //     pathname: "/reminders",
+            //     query: {
+            //         signup: "true",
+            //         login: "true"
+            //     }
+            // })
         }
-        // console.log("new user is: ");
-        // console.log(newUser);
-
-        setUsername("");
-        setPassword("");
-        setEmail("");
-        // router.push({
-        //     pathname: "/reminders",
-        //     query: {
-        //         signup: "true",
-        //         login: "true"
-        //     }
-        // })
+        
     }
     return (
         <form className="signup-form" onSubmit={handleSignup}>
