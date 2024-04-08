@@ -31,6 +31,7 @@ const AddReminder = () => {
             };
     
             // HERE is where we will probably send the reminder data to the backend
+            console.log(reminder);
     
             router.push("/reminders");
             setTitle("");
