@@ -12,8 +12,8 @@ app.use(cors({origin: true, credentials: true}));
 app.use("/api/remindeers", remindeers)
 
 //read mongodb connection string from a textfile in that is in the gitignore
-// const db_connection_str = file.readFileSync("./important-strings/mongo-connection.txt", "utf8"); 
-const db_connection_str = "mongodb+srv://danieljhan4:Password@cluster0.drrmqcs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const db_connection_str = file.readFileSync("./important-strings/mongo-connection.txt", "utf8"); 
+
 mongoose.set("strictQuery", false);
 mongoose.connect(db_connection_str).then(() => {
     app.listen(port, () => console.log(`Server running on port ${port}`))
