@@ -18,4 +18,4 @@ const RemindeerSchema = new mongoose.Schema( {
     }
 });
 
-module.export = Remindeer = mongoose.model('remindeer', RemindeerSchema);
+module.exports = Remindeer = mongoose.model('remindeer', RemindeerSchema);

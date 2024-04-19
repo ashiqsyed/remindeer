@@ -5,10 +5,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 1234;
+const remindeers = require("./routes/api/remindeers");
 
 app.use(cors({origin: true, credentials: true}));
-app.get("/", (req, res) => res.send("hello"));
+app.use("/api/remindeers", remindeers)
 
 //read mongodb connection string from a textfile in that is in the gitignore
 // const db_connection_str = file.readFileSync("./important-strings/mongo-connection.txt", "utf8"); 
