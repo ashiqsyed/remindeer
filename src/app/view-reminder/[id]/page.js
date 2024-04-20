@@ -27,7 +27,10 @@ const Page = ({params}) => {
         axios.delete(`http://localhost:1234/api/remindeers/${params.id}`)
         .then((res) => router.push("/reminders"))
         .catch((err) => console.log(`Error deleting Remindeer ID ${params.id}`));
-    }    
+    }
+    const handleEdit = () => {
+        router.push(`/update-reminder/${params.id}`);
+    }
     return (
         <div className="reminder-view">
             <div className="back-button-container">
@@ -45,7 +48,7 @@ const Page = ({params}) => {
                 
             </div>
             <div className="options-container">
-                <button className="edit-button" onClick={() => console.log(`Edit Remindeer ${params.id}`)}>Edit</button>
+                <button className="edit-button" onClick={handleEdit}>Edit</button>
                 <button className="delete-button" onClick={handleDelete}>Delete</button>
             </div>
         </div>

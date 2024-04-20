@@ -2,47 +2,65 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import './AddReminder.css';
+const axios = require("axios");
 
 const UpdateReminder = ({ reminderId }) => {
+    const [currentReminder, setCurrentReminder] = useState({});
     const router = useRouter();
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-
     // Fetch reminder data 
     useEffect(() => {
-        async function fetchReminderData() {
-            const response = await fetch(`/api/reminders/${reminderId}`);
-            const reminder = await response.json();
-            setTitle(reminder.title);
-            setDate(new Date(reminder.date).toISOString().slice(0, 16)); // Adjust for datetime-local input
-            setDescription(reminder.description);
-            setImageUrl(reminder.image);
-        }
-
         if (reminderId) {
-            fetchReminderData();
+            axios.get(`http://localhost:1234/api/remindeers/${reminderId}`)
+            .then((res) => {
+                setCurrentReminder(res.data)
+                setTitle(res.data.title);
+                setDate(new Date(res.data.date));
+                setDescription(res.data.description);
+                setImageUrl(res.data.img);
+            })
+            .catch((err) => console.log(`err getting remindeer id ${reminderId} ${err}`));
         }
-    }, [reminderId]);
+    }, [])
+    
+    
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value);
+    }
+
+    const handleDateChange = (e) => {
+        setDate(e.target.value);
+    }
+
+    const handleDescriptionChange = (e) => {
+        setDescription(e.target.value);
+    }
+
+    const handleImageUrlChange = (e) => {
+        setImageUrl(e.target.value);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const reminder = {
-            title,
+            title: title,
             date: new Date(date),
             description,
-            image: imageUrl
+            img: imageUrl
         };
-
-        // update in backend!
-        fetch(`/api/reminders/${reminderId}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reminder),
-        }).then(() => router.push("/reminders"));
+        // console.log("updated reminder");
+        // console.log(reminder);
+        axios.put(`http://localhost:1234/api/remindeers/${reminderId}`, reminder)
+        .then((res) => router.push("/reminders"))
+        .catch((err) => console.log(`error updating remindeer id ${reminderId}`));
+        setTitle("");
+        setDate("");
+        setDescription("");
+        setImageUrl("");
     };
 
     return (
@@ -53,10 +71,33 @@ const UpdateReminder = ({ reminderId }) => {
             </div>
             <div className="add">
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-                    <input type="datetime-local" value={date} onChange={e => setDate(e.target.value)} />
-                    <input type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
-                    <input type="text" placeholder="Image URL" value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
+                    <input 
+                        id="updated-title"
+                        type="text" 
+                        placeholder="Title"
+                        value={title} 
+                        onChange={handleTitleChange} 
+                     />
+                    <input 
+                        id="updated-datetime"
+                        type="datetime-local" 
+                        value={date} 
+                        onChange={handleDateChange} 
+                    />
+                    <input 
+                        id="updated-description"
+                        type="text" 
+                        placeholder="Description" 
+                        value={description} 
+                        onChange={handleDescriptionChange} 
+                    />
+                    <input 
+                        id="updated-url"
+                        type="text" 
+                        placeholder="Image URL" 
+                        value={imageUrl} 
+                        onChange={handleImageUrlChange} 
+                    />
                     <button type="submit">Update Reminder</button>
                 </form>
             </div>

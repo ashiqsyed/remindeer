@@ -27,8 +27,9 @@ router.get('/:id', (req, res) => {
 //updates a remindeer by ID
 router.put('/:id', bodyParser.json(), (req, res) => {
     Remindeer.findByIdAndUpdate( req.params.id, req.body)
-    .then( (remindeer) => res.json( {msg: "Item updated successfully"}))
+    .then( (remindeer) => res.send( {msg: "Item updated successfully"}))
     .catch( (err) => res.status(400).json( {error: 'Unable to update database'})); 
+
     // res.json("testing put/:id server route")
 });
 
