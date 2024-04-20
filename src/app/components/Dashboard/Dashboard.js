@@ -21,7 +21,6 @@ const Dashboard = () => {
   useEffect(() => {
     axios.get("http://localhost:1234/api/remindeers/")
     .then((res) => {
-      // console.log(res.data);
       setReminders(res.data);
     })
     .catch((err) => console.log("Error retreiving items"))
@@ -38,12 +37,7 @@ const Dashboard = () => {
   }
 
   const loggedIn = localStorage.getItem("loggedIn");
-  // console.log(reminders[0])
-  // console.log(`id: ${reminders[0]._id}`);
-  // console.log(`description: ${reminders[0].description}`);
-  // console.log(`img: ${reminders[0].img}`);
-  // console.log(`title: ${reminders[0].title}`);
-  // console.log(`date: ${reminders[0].date}`);
+
 
   return (
     <div className="outer-container">

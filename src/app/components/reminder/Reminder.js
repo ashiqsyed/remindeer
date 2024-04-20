@@ -16,14 +16,18 @@ const Reminder = ({ title, date, description, img, id }) => {
     // console.log(id);
   }
 
-  const handleDelete = () => {
+  // const handleDelete = () => {
     // console.log(`delete remindeer ${id}`);
 
-    axios.delete(`http://localhost:1234/api/remindeers/${id}`)
-    .then((res) => {router.refresh()})
-    .catch((err) => console.log(`Error deleting Remindeer ${id}`));
-  }
+  //   axios.delete(`http://localhost:1234/api/remindeers/${id}`)
+  //   .then((res) => {router.refresh()})
+  //   .catch((err) => console.log(`Error deleting Remindeer ${id}`));
+  // }
   
+    const handleView = () => {
+      // console.log(`view Remindeer id ${id}`);
+      router.push(`/view-reminder/${id}`);
+    }
   return (
     <div className={styles.reminderItem} onClick={onClick}>
       <div className="image-container">
@@ -38,8 +42,9 @@ const Reminder = ({ title, date, description, img, id }) => {
       making server and database requests. We need to add implementation for viewing individual reminders when we learn about requesting info
       from the backend*/}
       <div className={styles.buttonContainer}>
-        <button className={styles.editButton}>Edit</button>
-        <button className={styles.deleteButton} onClick={handleDelete}>Delete</button>
+        {/* <button className={styles.editButton}>Edit</button>
+        <button className={styles.deleteButton} onClick={handleDelete}>Delete</button> */}
+        <button className={styles.viewButton} onClick={handleView}>View</button>
       </div>
       
       

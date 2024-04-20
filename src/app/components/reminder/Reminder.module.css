@@ -31,17 +31,12 @@
     justify-content: space-around;
 }
 
-.editButton, .deleteButton {
+.viewButton {
     border-radius: 10px;
     transition: 0.25s;
 }
 
-.deleteButton:hover {
-    background-color: red;
-    color: white;
-}
-
-.editButton:hover {
+.viewButton:hover {
     background-color: #0d99ff;
     color: white;
 }

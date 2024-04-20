@@ -32,7 +32,6 @@ const AddReminder = () => {
             };
     
             // HERE is where we will probably send the reminder data to the backend
-            // console.log(reminder);
             axios.post("http://localhost:1234/api/remindeers/", reminder)
             .then((res) => {
                 setTitle("");

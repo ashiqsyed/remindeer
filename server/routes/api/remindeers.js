@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 //gets the specific remindeer by id
 router.get('/:id', (req, res) => {
     Remindeer.findById(req.params.id)
-    .then( (remindeer) => res.json(remindeer))
+    .then( (remindeer) => res.send(remindeer))
     .catch( (err) => res.status(404).json( {noitemfound: 'No Remindeer Found!'}));
     // res.json("Testing get/:id server route");
 });

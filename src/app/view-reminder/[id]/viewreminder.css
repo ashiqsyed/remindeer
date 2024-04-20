@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+}
+
+.reminder-view {
+    border: 1px solid black;
+    width: 100%;
+    height: 795px;
+    background-color: lightgray;
+}
+
+.back-button-container {
+
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.back-button {
+    height: 50px;
+    width: 50px;
+    margin-left: 35px;
+    /* margin-left: 10px; */
+    transition: 0.25s;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-timing-function: ease-in-out;
+}
+
+.back-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.reminder-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 55%;
+}
+
+.reminder-title {
+    text-align: center;
+}
+
+#reminder-image {
+    border: 1px solid black;
+    width: 75px;
+    height: 75px;
+}
+
+.reminder-description {
+    text-align: center;
+}
+
+.options-container {
+    border: 1px solid black;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.edit-button, .delete-button {
+    width: 150px;
+    height: 50px;
+    transition: 0.25s;
+    font-size: 16px;
+}
+
+.edit-button:hover {
+    background-color: lightblue;
+    color: white;
+    box-shadow: 2px 2px black;
+
+}
+
+.delete-button:hover {
+    background-color: red;
+    color: white;
+}
