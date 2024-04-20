@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import './AddReminder.css';
+const axios = require("axios");
 
 const AddReminder = () => {
     const router = useRouter();
@@ -21,24 +22,27 @@ const AddReminder = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         if (title === "" || date === "" || description === "" || imageUrl == "") {
-            alert("You must provide a title, date, description, and image url for a remidner.");
+            alert("You must provide a title, date, description, and image url for a reminder.");
         } else {
             const reminder = {
                 title: title,
                 date: new Date(date),
                 description: description,
-                image: imageUrl
+                img: imageUrl
             };
     
             // HERE is where we will probably send the reminder data to the backend
-            console.log(reminder);
-    
-            router.push("/reminders");
-            setTitle("");
-            setDate("");
-            setDescription("");
-            setImageUrl("");
+            // console.log(reminder);
+            axios.post("http://localhost:1234/api/remindeers/", reminder)
+            .then((res) => {
+                setTitle("");
+                setDate("");
+                setDescription("");
+                setImageUrl("");
 
+                router.push("/reminders");
+            })
+            .catch((err) => {console.log(err)})
         }
     };
 
