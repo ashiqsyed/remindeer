@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 var bodyParser = require("body-parser");
+const bcrypjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 
 const User = require('../../models/User');
