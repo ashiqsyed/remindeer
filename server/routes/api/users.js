@@ -64,6 +64,19 @@ router.post("/login", async (req, res) => {
 
 //checking if the token is valid:
 router.post("/tokenIsValid", async (req, res) => {
+    try {
+        const token = req.header("Authorization");
+        if (!token)
+            return res.json(false);
+        const verified = jwt.verify(tokenParts[1], process.env.JWT_SECRET);
+        if (!verified) 
+            return res.json(false);
+        const user = await User.findById(verified.id);
+        if (!user) return res.json(false);
+        return res.json(true);
+    } catch {
+        res.status(500).json( { error : err.message});
+    }
 
 });
 
