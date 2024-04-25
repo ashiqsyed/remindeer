@@ -4,14 +4,26 @@ import React from 'react'
 import Link from 'next/link'  //ex: linking Demo to the demo page
 import "./Nav.css"
 import logo from "../../../../public/Remindeer_PNG.png"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 const Nav = () => {
     const loggedIn = Boolean(localStorage.getItem("loggedIn"));
     const handleLogout = () => {
         localStorage.setItem("loggedIn", "")
     }
+    const [inDemo, setInDemo] = useState(false);
+    const handleDemoClick = () => {
+        setInDemo(true);
+    }
+    const handleDemoExit = () => {
+        localStorage.setItem("inDemo", "");
+        
+    }
+    useEffect(() => {
+        if (inDemo) {
+            localStorage.setItem("inDemo", inDemo);
 
-    
+        } 
+    }, [inDemo])
     return (
         <div className="navBar">
             <div className="nav-left">
@@ -22,11 +34,12 @@ const Nav = () => {
             </div>
             <div className="nav-right">
                 <ul>
-                    <li><Link className="nav-link" href='/demo'>Demo</Link></li>
+                    {loggedIn ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
+                    
                     {loggedIn ? 
                     <li><Link className="nav-link" onClick={handleLogout} href="/">Sign Out</Link></li> 
                     : 
-                    <li><Link className="nav-link" href="/">Log In</Link></li>}
+                    <li><Link onClick={handleDemoExit} className="nav-link" href="/">Log In</Link></li>}
                 </ul>
             </div>
 

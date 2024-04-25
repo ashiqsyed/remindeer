@@ -3,11 +3,13 @@ import styles from './Reminder.module.css';
 import {useRouter} from "next/navigation";
 
 const axios = require("axios");
-const Reminder = ({ title, date, description, img, id }) => {
+const Reminder = ({ title, date, description, img, id}) => {
   const router = useRouter();
   let reminderDate = new Date(date).toLocaleDateString();
   let reminderTime = new Date(date).toLocaleTimeString();
   let reminderDateTime = reminderDate + " at " + reminderTime;
+  const inDemo = Boolean(localStorage.getItem("inDemo"));
+  
   const onClick = () => {
     // console.log(title);
     // console.log(date);
@@ -28,6 +30,7 @@ const Reminder = ({ title, date, description, img, id }) => {
       // console.log(`view Remindeer id ${id}`);
       router.push(`/view-reminder/${id}`);
     }
+    
   return (
     <div className={styles.reminderItem} onClick={onClick}>
       <div className="image-container">
@@ -35,7 +38,7 @@ const Reminder = ({ title, date, description, img, id }) => {
       </div>
       <div className={styles.reminderInfo} id={id}>
         <h3>{title}</h3>
-        <p>{reminderDateTime} </p>
+        <p>{reminderDateTime}</p> <br />
         <p>{description}</p>
       </div>
       {/* Edit and Delete buttons for CRUD operation, add implementation once we learn about backend and rendering individual reminders by 
@@ -44,7 +47,9 @@ const Reminder = ({ title, date, description, img, id }) => {
       <div className={styles.buttonContainer}>
         {/* <button className={styles.editButton}>Edit</button>
         <button className={styles.deleteButton} onClick={handleDelete}>Delete</button> */}
-        <button className={styles.viewButton} onClick={handleView}>View</button>
+        {inDemo ? <></> : <button className={styles.viewButton} onClick={handleView}>View</button>}
+          
+        
       </div>
       
       

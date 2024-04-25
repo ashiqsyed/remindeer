@@ -8,6 +8,7 @@ import "./globals.css"
 export default function Home() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
  
   function handleLogin() {
     setIsLoggedIn(true);
@@ -23,6 +24,7 @@ export default function Home() {
       // console.log(`user is logged in: ${Boolean(localStorage.getItem("loggedIn"))}`)
     }
   }, [isLoggedIn])
+  
   return (
     <div className="app-container">
       <LoginPage handleLogin={handleLogin} loggedIn={isLoggedIn}/>

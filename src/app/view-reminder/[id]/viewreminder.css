@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: center;
     transition-timing-function: ease-in-out;
+    border-radius: 15px;
 }
 
 .back-button:hover {
@@ -50,17 +51,17 @@
 }
 
 #reminder-image {
-    border: 1px solid black;
-    width: 75px;
-    height: 75px;
+    width: 300px;
+    height: 300px;
 }
 
 .reminder-description {
     text-align: center;
+    font-size: 24px;
 }
 
 .options-container {
-    border: 1px solid black;
+    
     width: 100%;
     height: 15%;
     display: flex;
@@ -73,6 +74,8 @@
     height: 50px;
     transition: 0.25s;
     font-size: 16px;
+    border-radius: 15px;
+    
 }
 
 .edit-button:hover {

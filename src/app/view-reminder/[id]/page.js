@@ -42,7 +42,7 @@ const Page = ({params}) => {
             <div className="reminder-info">
                 <img id="reminder-image" src={currentReminder.img} alt={currentReminder.img} />
                 <div className="info-container">
-                    <p>Do on {reminderDateTime}</p>
+                    <p className="reminder-description">Do on {reminderDateTime}</p> <br />
                     <p className="reminder-description">Description: {currentReminder.description}</p>
                 </div>
                 

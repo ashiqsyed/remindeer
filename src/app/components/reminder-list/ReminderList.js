@@ -1,7 +1,7 @@
 import React from 'react';
 import Reminder from '../reminder/Reminder';
 
-const ReminderList = ({ reminders }) => {
+const ReminderList = ({ reminders}) => {
 
 
   // console.log("in reminderlist.js");
@@ -11,6 +11,7 @@ const ReminderList = ({ reminders }) => {
     <div>
       {reminders.map(reminder => (
         <Reminder 
+        
         key={reminder._id}
         id={reminder._id}
         description={reminder.description}
