@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 var bodyParser = require("body-parser");
-const bcrypjs = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-//const auth = ("../../middleware/auth")
+const auth = ("../../middleware/auth");
 
 
 
 const User = require('../../models/User');
 
 //Signup Route: 
-router.post("/signup", async (req, res) => {
+router.post("/signup", bodyParser.json(), async (req, res) => {
     try {
         const{ username, password, email} = req.body;
         if ( !password || !username) {
@@ -24,7 +24,7 @@ router.post("/signup", async (req, res) => {
             return res.status(400).json( {msg: "Already existing username"});
         }
 
-        const hashedPassword = await newUser.save();
+        const hashedPassword = await bcryptjs.hash(password, 8);
         const newUser = new User( {username, password: hashedPassword, email});
 
         const savedUser = await newUser.save();
@@ -32,19 +32,19 @@ router.post("/signup", async (req, res) => {
         res.json(savedUser);
 
     } catch (err) {
-        res.status(500).json( {error: "Error!"});
+        res.status(500).json( {error: err.message});
     }
 });
 
 //Login Route:
-router.post("/login", async (req, res) => {
+router.post("/login", bodyParser.json(), async (req, res) => {
     try {
         const { username, password} = req.body;
         if (!username || !password) {
             res.status(400).json( { msg: "Please enter in all fields"});
         }
         
-        const user = await User.findOne( {email} );
+        const user = await User.findOne( {username} );
         if (!user) {
             return res.status(400).json( {msg: "User with this username does not exist"});
         }
@@ -57,8 +57,8 @@ router.post("/login", async (req, res) => {
         res.json( {token, user: {id: user._id, username: user.username} });
 
     }
-    catch {
-        res.status(500).json( {error: "Error!"});
+    catch (err) {
+        res.status(500).json( {error: err.message});
     }
 });
 

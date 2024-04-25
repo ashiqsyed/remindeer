@@ -4,7 +4,8 @@ import "./LoginPage.css";
 import LoginForm from "./login-form/LoginForm";
 import SignUpForm from "./signup-form/SignUpForm";
 import Nav from "../nav/Nav";
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
 
 const LoginPage = (props) => {
     const [mustSignUp, setMustSignUp] = useState(true)
@@ -19,6 +20,7 @@ const LoginPage = (props) => {
     }
 
     return (
+    
         <div className="login-page">
             <Nav />
             <div className="form-container">
@@ -43,6 +45,7 @@ const LoginPage = (props) => {
             </div>
             {/* Replace this with react router links?? */}
         </div>
+        
     )
 }
 

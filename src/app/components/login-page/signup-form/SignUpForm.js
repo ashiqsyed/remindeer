@@ -1,14 +1,19 @@
 import "../LoginPage.css"
 import {useRouter} from "next/navigation";
-import {useState} from "react"
+import {useState, useContext} from "react"
+import UserContext from "../../../../../context/UserContext";
 import axios from 'axios';
 
 
 const SignUpForm = (props) => {
     const router = useRouter();
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+
+    const { setUserData } = useContext(UserContext);
+
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     }
@@ -18,6 +23,35 @@ const SignUpForm = (props) => {
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
+    
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        try {
+            console.log("We are attempting to create account");
+            await axios.post('//localhost:1234/api/users/signup', {
+                username: username, 
+                password: password,
+                email: email,
+            });
+
+            const loginRes = await axios.post('//localhost:1234/api/users/login', {
+                username: username,
+                password: password,
+            });
+            setUserData( {
+                token: loginRes.data.token,
+                user: loginRes.data.user,
+            });
+            localStorage.setItem("auth-token", loginRes.data.token);
+            console.log("We have logged in");
+            //push User to main page
+            router.push('/reminders');
+        } 
+        catch (err) {
+            console.log(err);
+        }
+    }
+    /*
 
     function handleSignup(event) {
         event.preventDefault();
@@ -46,6 +80,7 @@ const SignUpForm = (props) => {
         }
         
     }
+    */
     return (
         <form className="signup-form" onSubmit={handleSignup}>
             <input type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>

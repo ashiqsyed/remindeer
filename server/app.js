@@ -1,6 +1,7 @@
+require('dotenv').config();
+
 //used to read from files
 const file = require("fs");
-
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");

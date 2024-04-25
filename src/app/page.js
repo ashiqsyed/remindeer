@@ -1,8 +1,9 @@
 "use client"
 
 import LoginPage from "./components/login-page/LoginPage";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {useRouter} from "next/navigation";
+import { UserProvider } from "../../context/UserContext";
 
 import "./globals.css"
 export default function Home() {
@@ -24,9 +25,12 @@ export default function Home() {
     }
   }, [isLoggedIn])
   return (
+
+    <UserProvider>
     <div className="app-container">
       <LoginPage handleLogin={handleLogin} loggedIn={isLoggedIn}/>
     </div>
+    </UserProvider>
     
   );
 }
