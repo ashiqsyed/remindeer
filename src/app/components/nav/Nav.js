@@ -4,11 +4,16 @@ import React from 'react'
 import Link from 'next/link'  //ex: linking Demo to the demo page
 import "./Nav.css"
 import logo from "../../../../public/Remindeer_PNG.png"
-import {useEffect, useState} from "react"
+import {useEffect, useState, useContext} from "react"
+import UserContext from "../../context/UserContext";
 const Nav = () => {
-    const loggedIn = Boolean(localStorage.getItem("loggedIn"));
+    const {userData, setUserData} = useContext(UserContext);
+    const loggedIn = Boolean(localStorage.getItem("auth-token"));
     const handleLogout = () => {
-        localStorage.setItem("loggedIn", "")
+        // localStorage.setItem("loggedIn", "")
+        setUserData({token: undefined, user: undefined})
+        localStorage.removeItem("auth-token");
+        // router.push("/")
     }
     const [inDemo, setInDemo] = useState(false);
     const handleDemoClick = () => {
@@ -42,7 +47,6 @@ const Nav = () => {
                     <li><Link onClick={handleDemoExit} className="nav-link" href="/">Log In</Link></li>}
                 </ul>
             </div>
-
         </div>
     )
 

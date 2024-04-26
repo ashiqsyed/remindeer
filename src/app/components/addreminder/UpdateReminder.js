@@ -11,6 +11,12 @@ const UpdateReminder = ({ reminderId }) => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    useEffect(() => {
+        if (loggedIn === false) {
+            router.push("/");
+        }
+    }, [])
     // Fetch reminder data 
     useEffect(() => {
         if (reminderId) {

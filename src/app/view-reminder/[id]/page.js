@@ -7,6 +7,12 @@ import {useRouter} from "next/navigation";
 const Page = ({params}) => {
     const [currentReminder, setCurrentReminder] = useState({});
     const router = useRouter();
+    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    useEffect(() => {
+        if (loggedIn === false) {
+            router.push("/");
+        }
+    }, [])
     useEffect(() => {
         if (params.id) {
             axios.get(`http://localhost:1234/api/remindeers/${params.id}`)

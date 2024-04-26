@@ -4,11 +4,20 @@ import "./LoginPage.css";
 import LoginForm from "./login-form/LoginForm";
 import SignUpForm from "./signup-form/SignUpForm";
 import Nav from "../nav/Nav";
-import { useState, useContext } from 'react'
-
+import { useState, useContext, useEffect } from 'react'
+import UserContext from "../../context/UserContext";
+import {useRouter} from "next/navigation";
 
 const LoginPage = (props) => {
     const [mustSignUp, setMustSignUp] = useState(true)
+    const {userData, setUserData} = useContext(UserContext);
+    const router = useRouter();
+    useEffect(() => {
+        if (userData.token) {
+            router.push("/reminders")
+        }
+    }, [])
+    
     
     
     function handleToggleButton() {
@@ -22,7 +31,7 @@ const LoginPage = (props) => {
     return (
     
         <div className="login-page">
-            <Nav />
+            
             <div className="form-container">
                 {
                 mustSignUp ?

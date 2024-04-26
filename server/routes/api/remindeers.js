@@ -3,7 +3,7 @@ const router = express.Router();
 var bodyParser = require("body-parser");
 
 const Remindeer = require('../../models/Remindeer');
-
+const auth = require("../../middleware/auth")
 
 //gets all the remindeers
 router.get("/", (req, res) => {
@@ -11,7 +11,6 @@ router.get("/", (req, res) => {
     .then((remindeers) => {
         // res.json(remindeers);
         res.send(remindeers);
-
     })
     .catch((err) => res.status(404).json("No remindeers found"));
 })

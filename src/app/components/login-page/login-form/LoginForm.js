@@ -3,7 +3,7 @@ import {useRouter} from "next/navigation";
 import Link from "next/link"
 import {useState, useEffect, useContext} from "react"
 import axios from 'axios';
-import UserContext from "../../../../../context/UserContext";
+import UserContext from "../../../context/UserContext";
 
 
 const LoginForm = (props) => {
@@ -21,8 +21,7 @@ const LoginForm = (props) => {
     //const userData = useContext(UserContext);
     //const setUserData = useContext(UserContext);
 
-    console.log(userData);
-
+    
     useEffect( () => {
         //auto push the user to main screen if they are logged in
         if (userData.token) {
@@ -30,23 +29,33 @@ const LoginForm = (props) => {
         }
     }, [userData.token, router]);
 
-    function handleLogin(event) {
+    async function handleLogin(event) {
         event.preventDefault();
-        if (username === '' || password === '') {
-            alert("Both username and password must be entered.")
-        } else {
-            props.onLoginClick();
-            const existingUser = {
-                username: username,
-                password: password
+        try {
+            if (username === '' || password === '') {
+                alert("Both username and password must be entered.")
+            } else {
+                // props.onLoginClick();
+                const existingUser = {
+                    username: username,
+                    password: password
+                }
+                const res = await axios.post("http://localhost:1234/api/users/login", existingUser);
+                setUserData({
+                    token: res.data.token,
+                    user: res.data.user
+                })
+                localStorage.setItem("auth-token", res.data.token);
+                router.push("/reminders");
+                console.log(userData);
+        
+                setUsername("");
+                setPassword("");
             }
-            
-            // console.log("existing user: ");
-            // console.log(existingUser);
-    
-            setUsername("");
-            setPassword("");
+        } catch (err) {
+            console.log("Login failed.");
         }
+        
 
     }
     return (

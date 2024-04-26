@@ -3,10 +3,7 @@ const router = express.Router();
 var bodyParser = require("body-parser");
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const auth = ("../../middleware/auth");
-
-
-
+const auth = require("../../middleware/auth");
 const User = require('../../models/User');
 
 //Signup Route: 
@@ -29,9 +26,13 @@ router.post("/signup", bodyParser.json(), async (req, res) => {
 
         const savedUser = await newUser.save();
         console.log(savedUser.username);
+        
+        
+
         res.json(savedUser);
 
     } catch (err) {
+        // console.log(err);
         res.status(500).json( {error: err.message});
     }
 });
@@ -39,6 +40,7 @@ router.post("/signup", bodyParser.json(), async (req, res) => {
 //Login Route:
 router.post("/login", bodyParser.json(), async (req, res) => {
     try {
+        console.log("CHECK");
         const { username, password} = req.body;
         if (!username || !password) {
             res.status(400).json( { msg: "Please enter in all fields"});
@@ -80,7 +82,13 @@ router.post("/tokenIsValid", async (req, res) => {
 
 });
 
-//getting users
+// router.delete('/:id', auth, (req, res) => {
+//     User.findByIdAndRemove(req.params.id, req.body)
+//         .then( (user) => res.json( {msg: "Item deleted successfully!"}))
+//         .catch( (err) => res.status(404).json( {error: 'No such a item'}))
+// })
+
+// getting users
 router.get('/', (req, res) => {
     User.find()
         .then( (users) => res.json(users))

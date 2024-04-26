@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useRouter } from 'next/navigation';
 import './AddReminder.css';
 const axios = require("axios");
@@ -10,7 +10,13 @@ const AddReminder = () => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-
+    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    useEffect(() => {
+        if (loggedIn === false) {
+            router.push("/");
+            // alert("You must be logged in.");
+        }
+    }, [loggedIn])
     const handleTitleChange = (event) => { setTitle(event.target.value); };
 
     const handleDateChange = (event) => { setDate(event.target.value); };

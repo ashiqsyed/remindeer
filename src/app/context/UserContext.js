@@ -1,3 +1,4 @@
+"use client"
 import { createContext, useState, useEffect} from 'react';
 
 const UserContext = createContext();
@@ -25,5 +26,7 @@ export const UserProvider = ( {children } ) => {
         </UserContext.Provider>
     );
 };
+
+export const useUserContext = () => useContext(UserContext);
 
 export default UserContext;

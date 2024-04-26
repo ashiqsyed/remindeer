@@ -11,7 +11,6 @@ const ReminderList = ({ reminders}) => {
     <div>
       {reminders.map(reminder => (
         <Reminder 
-        
         key={reminder._id}
         id={reminder._id}
         description={reminder.description}
