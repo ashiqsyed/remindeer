@@ -1,7 +1,10 @@
 import "../LoginPage.css"
 import {useRouter} from "next/navigation";
 import Link from "next/link"
-import {useState} from "react"
+import {useState, useEffect, useContext} from "react"
+import axios from 'axios';
+import UserContext from "../../../../../context/UserContext";
+
 
 const LoginForm = (props) => {
     const router = useRouter();
@@ -13,6 +16,20 @@ const LoginForm = (props) => {
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     }
+    const {userData, setUserData} = useContext(UserContext);
+
+    //const userData = useContext(UserContext);
+    //const setUserData = useContext(UserContext);
+
+    console.log(userData);
+
+    useEffect( () => {
+        //auto push the user to main screen if they are logged in
+        if (userData.token) {
+            router.push('/reminders');
+        }
+    }, [userData.token, router]);
+
     function handleLogin(event) {
         event.preventDefault();
         if (username === '' || password === '') {
@@ -33,6 +50,7 @@ const LoginForm = (props) => {
 
     }
     return (
+
         <form className="login-form" onSubmit={handleLogin}>
             <input type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>
             <input type="password" placeholder="Password" onChange={handlePasswordChange} value={password}/>
