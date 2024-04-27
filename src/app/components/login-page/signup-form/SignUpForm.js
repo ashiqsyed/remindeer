@@ -53,7 +53,15 @@ const SignUpForm = (props) => {
         } 
         catch (err) {
             console.log(err);
-            alert("Please enter a username and a password.")
+            if (err.response.data.msg === "Please fill in username and password") {
+                alert("You must fill in a username and a password.");
+            } else if (err.response.data.msg === "Already existing username") {
+                alert("The username you chose already exists.");
+            } else if (err.response.data.msg === "Already existing email") {
+                alert("There is already an account with this email.");
+            } else if (err.response.data.msg === "Password must be greater than 6 characters!") {
+                alert("Your password must be greater than 6 characters.");
+            }
         }
     }
     return (
