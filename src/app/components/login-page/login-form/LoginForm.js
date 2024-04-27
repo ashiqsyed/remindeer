@@ -32,28 +32,36 @@ const LoginForm = (props) => {
     async function handleLogin(event) {
         event.preventDefault();
         try {
-            if (username === '' || password === '') {
-                alert("Both username and password must be entered.")
-            } else {
-                // props.onLoginClick();
-                const existingUser = {
-                    username: username,
-                    password: password
-                }
-                const res = await axios.post("http://localhost:1234/api/users/login", existingUser);
-                setUserData({
-                    token: res.data.token,
-                    user: res.data.user
-                })
-                localStorage.setItem("auth-token", res.data.token);
-                router.push("/reminders");
-                console.log(userData);
-        
-                setUsername("");
-                setPassword("");
+            // props.onLoginClick();
+            const existingUser = {
+                username: username,
+                password: password
             }
+            const res = await axios.post("http://localhost:1234/api/users/login", existingUser);
+            setUserData({
+                token: res.data.token,
+                user: res.data.user
+            })
+            localStorage.setItem("auth-token", res.data.token);
+            router.push("/reminders");
+            console.log(userData);
+    
+            setUsername("");
+            setPassword("");
+            
         } catch (err) {
-            console.log("Login failed.");
+            // console.log("Login failed.");
+            console.log("err.response");
+            console.log(err.response);
+            // console.log(err.response.data.msg)
+            if (err.response.data.msg === "This user does not exist." && err.response.status === 404) {
+                alert("This username does not exist in our database.");
+            } else if (err.response.data.msg === "Please enter a username and a password." && err.response.status === 400) {
+                alert("You must enter a username and a password.");
+            } else if (err.response.data.msg === "Incorrect Password." && err.response.status === 404) {
+                alert("Incorrect password.")
+            }
+            
         }
         
 
