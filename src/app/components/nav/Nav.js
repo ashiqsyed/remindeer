@@ -6,9 +6,11 @@ import "./Nav.css"
 import logo from "../../../../public/Remindeer_PNG.png"
 import {useEffect, useState, useContext} from "react"
 import UserContext from "../../context/UserContext";
-const Nav = () => {
+import {useRouter} from "next/navigation"
+const Nav = (props) => {
     const {userData, setUserData} = useContext(UserContext);
     const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    const router = useRouter();
     const handleLogout = () => {
         // localStorage.setItem("loggedIn", "")
         setUserData({token: undefined, user: undefined})
@@ -33,20 +35,30 @@ const Nav = () => {
         <div className="navBar">
             <div className="nav-left">
                 <ul>
-                    <li><img src={logo.src} alt="Logo of Remindeer" width="100px"/></li>
-                    <li>Remindeer</li>
+                    <li><img src={logo.src} onClick={() => router.push("/")}alt="Logo of Remindeer" width="100px"/></li>
+                    {/* <li>Remindeer</li> */}
+                    <li><Link className="nav-link" href="/">Remindeer</Link></li>
                 </ul>
             </div>
             <div className="nav-right">
                 <ul>
-                    {loggedIn ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
+                    {/* {loggedIn ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
                     
                     {loggedIn ? 
                     <li><Link className="nav-link" onClick={handleLogout} href="/">Sign Out</Link></li> 
                     : 
-                    <li><Link onClick={handleDemoExit} className="nav-link" href="/">Log In</Link></li>}
+                    <li><Link onClick={handleDemoExit} className="nav-link" href="/">Log In</Link></li>} */}
+                    {userData.token ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
+                    
+                    {userData.token ? 
+                    <li><Link className="nav-link" onClick={handleLogout} href="/">Sign Out</Link></li> 
+                    : 
+                    <li><Link onClick={handleDemoExit} className="nav-link" href="/login">Log In</Link></li>}
+                    
+                    {/* <button onClick={() => console.log(userData)}>CLICK</button> */}
                 </ul>
             </div>
+            
         </div>
     )
 

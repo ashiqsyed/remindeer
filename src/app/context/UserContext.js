@@ -13,6 +13,7 @@ export const UserProvider = ( {children } ) => {
         //this will check for a token within local storage
         const token = localStorage.getItem('auth-token');
         if (token) {
+            console.log("check")
             setUserData( prev => ( {
                 ...prev,
                 token: token,

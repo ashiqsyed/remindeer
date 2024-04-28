@@ -10,8 +10,8 @@ const User = require('../../models/User');
 router.post("/signup", bodyParser.json(), async (req, res) => {
     try {
         const{ username, password, email} = req.body;
-        if ( !password || !username) {
-            return res.status(400).json( {msg: "Please fill in username and password"});
+        if ( !password || !username || !email) {
+            return res.status(400).json( {msg: "Please enter a username, email, and a password."});
         }
         if (password.length < 6) {
             return res.status(400).json( {msg: "Password must be greater than 6 characters!"});

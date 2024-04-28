@@ -1,8 +1,8 @@
 "use client"
 // This is the /home or /root path since this is the unauthenticated view
-import "./LoginPage.css";
-import LoginForm from "./login-form/LoginForm";
-import SignUpForm from "./signup-form/SignUpForm";
+// import "./LoginPage.css";
+import LoginForm from "./LoginForm";
+import SignUpForm from "../signup-page/SignUpForm";
 import Nav from "../nav/Nav";
 import { useState, useContext, useEffect } from 'react'
 import UserContext from "../../context/UserContext";
@@ -21,19 +21,15 @@ const LoginPage = (props) => {
     
     
     function handleToggleButton() {
-        if (mustSignUp) {
-            setMustSignUp(false)
-        } else {
-            setMustSignUp(true)
-        }
+        router.push("/signup")
     }
 
     return (
     
         <div className="login-page">
-            
-            <div className="form-container">
-                {
+            <Nav userData={userData} />
+            <div className="login-page-content">
+                {/* {
                 mustSignUp ?
                 <div className="signup-form-container">
                     <SignUpForm onSignupClick={props.handleLogin} /> 
@@ -50,9 +46,15 @@ const LoginPage = (props) => {
                     </div>
                     
                 </div>
-                }
+                } */}
+                <div className="form-wrapper">
+                    <LoginForm onLoginClick={props.handleLogin} />
+                    <div className="alt-option-container">
+                        <p>Don't have an account?</p> <button className="toggle-button" onClick={handleToggleButton}> Create one!</button> 
+                    </div>
+                </div>
             </div>
-            {/* Replace this with react router links?? */}
+            
         </div>
         
     )

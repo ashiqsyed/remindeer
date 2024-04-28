@@ -1,9 +1,9 @@
-import "../LoginPage.css"
+// import "../LoginPage.css"
 import {useRouter} from "next/navigation";
 import {useState, useContext} from "react"
-import UserContext from "../../../context/UserContext";
+import UserContext from "../../context/UserContext";
 import axios from 'axios';
-
+import "./SignUpPage.css"
 
 const SignUpForm = (props) => {
     const router = useRouter();
@@ -53,10 +53,10 @@ const SignUpForm = (props) => {
         } 
         catch (err) {
             console.log(err);
-            if (err.response.data.msg === "Please fill in username and password") {
-                alert("You must fill in a username and a password.");
+            if (err.response.data.msg === "Please enter a username, email, and a password.") {
+                alert("You must enter in a username, password, and an email.");
             } else if (err.response.data.msg === "Already existing username") {
-                alert("The username you chose already exists.");
+                alert("There is already an account with this username.");
             } else if (err.response.data.msg === "Already existing email") {
                 alert("There is already an account with this email.");
             } else if (err.response.data.msg === "Password must be greater than 6 characters!") {
@@ -66,9 +66,9 @@ const SignUpForm = (props) => {
     }
     return (
         <form className="signup-form" onSubmit={handleSignup}>
-            <input type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>
-            <input type="password" placeholder="Password" onChange={handlePasswordChange} value={password}/>
-            <input type="email" placeholder="thisismyemail@gmail.com" onChange={handleEmailChange} value={email}/>
+            <input className="username" type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>
+            <input className="password" type="password" placeholder="Password" onChange={handlePasswordChange} value={password}/>
+            <input className="email" type="email" placeholder="thisismyemail@gmail.com" onChange={handleEmailChange} value={email}/>
 
             <div className="button-container">
                 <button className="signup-button" type="submit">Sign Up</button>

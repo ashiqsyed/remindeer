@@ -5,31 +5,31 @@ import {useState, useEffect, useContext} from "react";
 import {useRouter} from "next/navigation";
 import { UserProvider } from "./context/UserContext";
 import Nav from "./components/nav/Nav"
-
+import UserContext from "./context/UserContext";
 import "./globals.css"
+import LandingPage from "./components/landing-page/LandingPage";
 export default function Home() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
- 
-  function handleLogin() {
-    setIsLoggedIn(true);
-  }
+  const {userData, setUserData} = useContext(UserContext);
+  // function handleLogin() {
+  //   setIsLoggedIn(true);
+  // }
   
   useEffect(() => {
-    if (isLoggedIn) {
+    if (userData.token) {
       router.push("/reminders");
-      localStorage.setItem("loggedIn", isLoggedIn)
+      // localStorage.setItem("loggedIn", isLoggedIn)
     } 
-  }, [isLoggedIn])
+  }, [])
   
   return (
 
-    <UserProvider>
+    
       <div className="app-container">
-        <Nav />
-        <LoginPage handleLogin={handleLogin} loggedIn={isLoggedIn}/>
+         <LandingPage />
       </div>
-    </UserProvider>
+    
     
   );
 }

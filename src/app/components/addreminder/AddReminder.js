@@ -65,12 +65,14 @@ const AddReminder = () => {
                         placeholder="Title"
                         onChange={handleTitleChange}
                         value={title}
+                        className="reminder-title"
                     />
                     <input
                         id="date"
                         type="datetime-local"
                         onChange={handleDateChange}
                         value={date}
+                        className="reminder-date"
                     />
                     <input
                         id="description"
@@ -78,6 +80,7 @@ const AddReminder = () => {
                         placeholder="Description"
                         onChange={handleDescriptionChange}
                         value={description}
+                        className="reminder-description"
                     />
                     <input
                         id="image-url"
@@ -85,6 +88,7 @@ const AddReminder = () => {
                         placeholder="Image URL"
                         onChange={handleImageUrlChange}
                         value={imageUrl}
+                        className="reminder-img"
                     />
                     <button type="submit">Create Reminder</button>
                 </form>

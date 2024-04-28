@@ -1,10 +1,10 @@
-import "../LoginPage.css"
+// import "../LoginPage.css"
 import {useRouter} from "next/navigation";
 import Link from "next/link"
 import {useState, useEffect, useContext} from "react"
 import axios from 'axios';
-import UserContext from "../../../context/UserContext";
-
+import UserContext from "../../context/UserContext";
+import "../signup-page/SignUpPage.css"
 
 const LoginForm = (props) => {
     const router = useRouter();
@@ -69,8 +69,8 @@ const LoginForm = (props) => {
     return (
 
         <form className="login-form" onSubmit={handleLogin}>
-            <input type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>
-            <input type="password" placeholder="Password" onChange={handlePasswordChange} value={password}/>
+            <input className="username" type="text" placeholder="Username" onChange={handleUsernameChange} value={username}/>
+            <input className="password" type="password" placeholder="Password" onChange={handlePasswordChange} value={password}/>
             <div className="button-container">
                 <button className="login-button" type="submit">Log in</button>
                 {/* <button>
