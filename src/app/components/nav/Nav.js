@@ -13,6 +13,7 @@ const Nav = (props) => {
     const router = useRouter();
     const handleLogout = () => {
         // localStorage.setItem("loggedIn", "")
+        // handleDemoExit();
         setUserData({token: undefined, user: undefined})
         localStorage.removeItem("auth-token");
         // router.push("/")
@@ -52,9 +53,9 @@ const Nav = (props) => {
                     <li><Link className="nav-link" onClick={handleLogout} href="/">Sign Out</Link></li> 
                     : 
                     <li><Link onClick={handleDemoExit} className="nav-link" href="/">Log In</Link></li>} */}
-                    {userData.token ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
+                    {localStorage.getItem("auth-token") ? <></> : <li><Link onClick={handleDemoClick} className="nav-link" href='/demo'>Demo</Link></li>}
                     
-                    {userData.token ? 
+                    {localStorage.getItem("auth-token") ? 
                     <li><Link className="nav-link" onClick={handleLogout} href="/">Sign Out</Link></li> 
                     : 
                     <li><Link onClick={handleDemoExit} className="nav-link" href="/login">Log In</Link></li>}
