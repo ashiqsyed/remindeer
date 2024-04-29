@@ -20,15 +20,31 @@ const Dashboard = () => {
   const [reminders, setReminders] = useState([]);
   const loggedIn = Boolean(localStorage.getItem("auth-token"));
   const {userData, setUserData} = useContext(UserContext);
+
+   
   useEffect(() => {
-    if (loggedIn === false) {
+    // if (!userData.token) {
+    if (!localStorage.getItem("auth-token")) {
       router.push("/");
-      
     }
-  }, [loggedIn])  
-  
+  }, [])
+
   useEffect(() => {
-    axios.get("http://localhost:1234/api/remindeers/")
+    axios.post("http://localhost:1234/api/users/tokenIsValid", userData.token)
+    .then((res) => {
+      console.log("token is valid")
+    })
+    .catch((err) => {
+      console.log("token is not valid");
+      router.push("/");
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get("http://localhost:1234/api/remindeers/", {headers: {
+      // "Authorization": `Bearer ${userData.token}`
+      "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+    }})
     .then((res) => {
       setReminders(res.data);
     })
@@ -37,7 +53,6 @@ const Dashboard = () => {
   }, [])
 
   const handleAdding = () => {
-    
     router.push("/add-reminder")
 
   }
@@ -52,6 +67,7 @@ const Dashboard = () => {
     <div className="outer-container">
       <Nav />
       <div className={ isClicked ? "dashboard-container-clicked" : "dashboard-container"}>
+        {/* {localStorage.getItem("auth-token") ? <button className="addReminderBtn" onClick={handleAdding}>+ Add Reminder</button> : <></>} */}
         <button className="addReminderBtn" onClick={handleAdding}>+ Add Reminder</button>
         {/* <ReminderList reminders={testReminders} /> */}
         <ReminderList reminders={reminders} />

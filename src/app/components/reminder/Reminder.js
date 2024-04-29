@@ -21,10 +21,7 @@ const Reminder = ({ title, date, description, img, id}) => {
   // const handleDelete = () => {
     // console.log(`delete remindeer ${id}`);
 
-  //   axios.delete(`http://localhost:1234/api/remindeers/${id}`)
-  //   .then((res) => {router.refresh()})
-  //   .catch((err) => console.log(`Error deleting Remindeer ${id}`));
-  // }
+  
   
     const handleView = () => {
       // console.log(`view Remindeer id ${id}`);

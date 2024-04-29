@@ -50,7 +50,7 @@ form {
 
 /* input[type="datetime-local"], input[type="text"] {
      */
-.reminder-date, .reminder-title, .reminder-description, .reminder-img {
+.reminder-date, .reminder-title-input, .reminder-description, .reminder-img {
     height: 40px;
     margin-bottom: 10px;
     border: 1px solid #ccc;

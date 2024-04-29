@@ -31,13 +31,17 @@ const Nav = (props) => {
 
         } 
     }, [inDemo])
+    const handleLogoClick = () => {
+        router.push("/");
+        handleDemoExit();
+    }
     return (
         <div className="navBar">
             <div className="nav-left">
                 <ul>
-                    <li><img src={logo.src} onClick={() => router.push("/")}alt="Logo of Remindeer" width="100px"/></li>
+                    <li><img src={logo.src} onClick={handleLogoClick}alt="Logo of Remindeer" width="100px"/></li>
                     {/* <li>Remindeer</li> */}
-                    <li><Link className="nav-link" href="/">Remindeer</Link></li>
+                    <li><Link className="nav-link" onClick={handleDemoExit}href="/">Remindeer</Link></li>
                 </ul>
             </div>
             <div className="nav-right">

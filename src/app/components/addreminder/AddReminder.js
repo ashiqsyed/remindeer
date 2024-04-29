@@ -1,8 +1,9 @@
 "use client"
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { useRouter } from 'next/navigation';
 import './AddReminder.css';
 const axios = require("axios");
+import UserContext from "../../context/UserContext";
 
 const AddReminder = () => {
     const router = useRouter();
@@ -10,13 +11,15 @@ const AddReminder = () => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    // const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    const {userData, setUserData} = useContext(UserContext);
     useEffect(() => {
-        if (loggedIn === false) {
+        // if (!userData.token) {
+        if (!localStorage.getItem("auth-token")) {
             router.push("/");
             // alert("You must be logged in.");
         }
-    }, [loggedIn])
+    }, [])
     const handleTitleChange = (event) => { setTitle(event.target.value); };
 
     const handleDateChange = (event) => { setDate(event.target.value); };
@@ -38,7 +41,12 @@ const AddReminder = () => {
             };
     
             // HERE is where we will probably send the reminder data to the backend
-            axios.post("http://localhost:1234/api/remindeers/", reminder)
+            axios.post("http://localhost:1234/api/remindeers/", reminder, {
+                headers: {
+                    // "Authorization": `Bearer ${userData.token}`
+                    "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+                }
+            })
             .then((res) => {
                 setTitle("");
                 setDate("");
@@ -65,7 +73,7 @@ const AddReminder = () => {
                         placeholder="Title"
                         onChange={handleTitleChange}
                         value={title}
-                        className="reminder-title"
+                        className="reminder-title-input"
                     />
                     <input
                         id="date"

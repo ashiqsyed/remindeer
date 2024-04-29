@@ -1,9 +1,9 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { useRouter } from 'next/navigation';
 import './AddReminder.css';
 const axios = require("axios");
-
+import UserContext from "../../context/UserContext";
 const UpdateReminder = ({ reminderId }) => {
     const [currentReminder, setCurrentReminder] = useState({});
     const router = useRouter();
@@ -11,17 +11,33 @@ const UpdateReminder = ({ reminderId }) => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    // const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    const {userData, setUserData} = useContext(UserContext);
     useEffect(() => {
-        if (loggedIn === false) {
+        // if (!userData.token) {
+        if (!localStorage.getItem("auth-token")) {
             router.push("/");
         }
     }, [])
     // Fetch reminder data 
     useEffect(() => {
         if (reminderId) {
-            axios.get(`http://localhost:1234/api/remindeers/${reminderId}`)
+            axios.get(`http://localhost:1234/api/remindeers/${reminderId}`, {
+                headers: {
+                    // "Authorization": `Bearer ${userData.token}`
+                    "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+                }
+            })
             .then((res) => {
+                const reminderDate = new Date(res.data.date);
+                console.log(reminderDate.getFullYear());
+                const reminderYear = reminderDate.getFullYear();
+                let reminderMonth = reminderDate.getMonth();
+                // if (parseInt(reminderMonth) < 10) {
+                //     reminderMonth = "0" + reminderMonth
+                // }
+                reminderMonth = "0" + reminderMonth
+                console.log(reminderMonth);
                 setCurrentReminder(res.data)
                 setTitle(res.data.title);
                 setDate(new Date(res.data.date));
@@ -60,7 +76,12 @@ const UpdateReminder = ({ reminderId }) => {
         };
         // console.log("updated reminder");
         // console.log(reminder);
-        axios.put(`http://localhost:1234/api/remindeers/${reminderId}`, reminder)
+        axios.put(`http://localhost:1234/api/remindeers/${reminderId}`, reminder, {
+            headers: {
+                // "Authorization": `Bearer ${userData.token}`
+                "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+            }
+        })
         .then((res) => router.push("/reminders"))
         .catch((err) => console.log(`error updating remindeer id ${reminderId}`));
         setTitle("");

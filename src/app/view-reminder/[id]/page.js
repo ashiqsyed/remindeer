@@ -2,20 +2,28 @@
 
 import "./viewreminder.css"
 const axios = require("axios");
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import {useRouter} from "next/navigation";
+import UserContext from "../../context/UserContext";
 const Page = ({params}) => {
     const [currentReminder, setCurrentReminder] = useState({});
     const router = useRouter();
-    const loggedIn = Boolean(localStorage.getItem("auth-token"));
+    const {userData, setUserData} = useContext(UserContext);
+    // const loggedIn = Boolean(localStorage.getItem("auth-token"));
     useEffect(() => {
-        if (loggedIn === false) {
+        // if (!userData.token) {
+        if (!localStorage.getItem("auth-token")) {
             router.push("/");
         }
     }, [])
     useEffect(() => {
         if (params.id) {
-            axios.get(`http://localhost:1234/api/remindeers/${params.id}`)
+            axios.get(`http://localhost:1234/api/remindeers/${params.id}`, {
+                headers: {
+                    // "Authorization": `Bearer ${userData.token}`
+                    "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+                }
+            })
             .then((res) => setCurrentReminder(res.data))
             .catch((err) => console.log(`Error retrieving Remindeer ID ${params.id}`));
 
@@ -25,12 +33,17 @@ const Page = ({params}) => {
     const reminderDate = new Date(currentReminder.date).toLocaleDateString();
     const reminderTime = new Date(currentReminder.date).toLocaleTimeString();
     const reminderDateTime = reminderDate + " at " + reminderTime;
-
+    
     const handleBackButton = () => {
         router.push("/reminders");
     }
     const handleDelete = () => {
-        axios.delete(`http://localhost:1234/api/remindeers/${params.id}`)
+        axios.delete(`http://localhost:1234/api/remindeers/${params.id}`, {
+            headers: {
+                // "Authorization": `Bearer ${userData.token}`
+                "Authorization": `Bearer ${localStorage.getItem("auth-token")}`
+            }
+        })
         .then((res) => router.push("/reminders"))
         .catch((err) => console.log(`Error deleting Remindeer ID ${params.id}`));
     }

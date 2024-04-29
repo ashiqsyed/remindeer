@@ -31,8 +31,6 @@ router.post("/signup", bodyParser.json(), async (req, res) => {
         const savedUser = await newUser.save();
         console.log(savedUser.username);
         
-        
-
         res.json(savedUser);
 
     } catch (err) {
@@ -58,9 +56,6 @@ router.post("/login", bodyParser.json(), async (req, res) => {
         if (!user) {
             return res.status(404).send( {msg: "This user does not exist."});
             
-        } else {
-            
-            console.log(user);
         }
 
         const isMatch = await bcryptjs.compare(password, user.password);
@@ -69,16 +64,17 @@ router.post("/login", bodyParser.json(), async (req, res) => {
         }
         const token = jwt.sign( {id: user._id }, process.env.JWT_SECRET);
         res.json( {token, user: {id: user._id, username: user.username} });
+        // console.log(token);
 
     }
     catch (err) {
         res.status(500).json( {error: err.message});
-        
     }
 });
 
 //checking if the token is valid:
 router.post("/tokenIsValid", async (req, res) => {
+    // console.log(req.body);
     try {
         const token = req.header("Authorization");
         if (!token)
@@ -87,19 +83,15 @@ router.post("/tokenIsValid", async (req, res) => {
         if (!verified) 
             return res.json(false);
         const user = await User.findById(verified.id);
+        
         if (!user) return res.json(false);
         return res.json(true);
     } catch {
         res.status(500).json( { error : err.message});
+        
     }
 
 });
-
-// router.delete('/:id', auth, (req, res) => {
-//     User.findByIdAndRemove(req.params.id, req.body)
-//         .then( (user) => res.json( {msg: "Item deleted successfully!"}))
-//         .catch( (err) => res.status(404).json( {error: 'No such a item'}))
-// })
 
 // getting users
 router.get('/', (req, res) => {
