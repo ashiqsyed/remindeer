@@ -88,7 +88,7 @@ const AddReminder = () => {
                         placeholder="Description"
                         onChange={handleDescriptionChange}
                         value={description}
-                        className="reminder-description"
+                        className="reminder-description-input"
                     />
                     <input
                         id="image-url"

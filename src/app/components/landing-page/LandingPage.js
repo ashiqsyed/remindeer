@@ -2,7 +2,16 @@ import Nav from "../nav/Nav";
 import logo from "../../../../public/Remindeer_PNG.png";
 import Link from "next/link";
 import "./landingpage.css";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
+
 const LandingPage = () => {
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem("auth-token")) {
+            router.push("/reminders");
+        }
+    }, [])
     return (
         <div className="landing-page-container">
             <Nav />
